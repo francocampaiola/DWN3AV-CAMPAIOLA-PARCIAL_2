@@ -1,0 +1,20 @@
+.hero {
+    min-height: 300px;
+    background-image: url("../img/bg-hero.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.delivery {
+    height: 280px;
+    background-image: url("../img/pickup-delivery.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.jordan {
+    height: 280px;
+    background-image: url("../img/air-jordan.jpg");
+    background-position: center center;
+    background-size: cover;
+}
