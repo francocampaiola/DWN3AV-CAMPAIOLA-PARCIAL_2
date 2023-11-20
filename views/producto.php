@@ -4,7 +4,11 @@ $id = $_GET['id'] ?? FALSE;
 
 $objGorra = new Gorra();
 $gorra = $objGorra->catalogo_x_id($id);
-$colores = (new Color())->listar_colores_x_gorra();
+$colores = (new Color())->get_colores_por_id_gorra($id);
+
+if (count($colores) < 2) {
+    $colores[] = (new Color())->get_x_id($gorra->getColor_id());
+}
 
 ?>
 
@@ -28,17 +32,17 @@ $colores = (new Color())->listar_colores_x_gorra();
                         <?php
                         if (count($colores) > 1) {
                             echo "Colores: ";
+                            $numColores = count($colores);
+                            foreach ($colores as $key => $color) {
+                                echo $color->getNombre();
+
+                                if ($key < $numColores - 1) {
+                                    echo ", ";
+                                }
+                            }
                         } else {
                             echo "Color: ";
-                        }
-
-                        $numColores = count($colores);
-                        foreach ($colores as $key => $color) {
-                            echo $color->getNombre();
-
-                            if ($key < $numColores - 1) {
-                                echo ", ";
-                            }
+                            echo $colores[0]->getNombre();
                         }
                         ?>
                     </p>
@@ -47,7 +51,7 @@ $colores = (new Color())->listar_colores_x_gorra();
                     </p>
                     <p class="fs-6">
                         Fecha de lanzamiento: <?=
-                        date("d/m/Y", strtotime($gorra->getFechaLanzamiento())); ?>
+                                                date("d/m/Y", strtotime($gorra->getFechaLanzamiento())); ?>
                     </p>
                     <p class="text-muted">
                         <?= $gorra->getDescripcion() ?>
@@ -66,7 +70,7 @@ $colores = (new Color())->listar_colores_x_gorra();
 
                 </div>
             </div>
-            
+
         <?php } else { ?>
             <div class="col">
                 <h2 class="text-center m-5">No se encontró el producto deseado.</h2>

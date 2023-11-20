@@ -95,7 +95,7 @@ class Gorra
         return $this->modelo;
     }
 
-    public function getColor_id(): string
+    public function getColor_id(): ?int
     {
         return $this->color_id;
     }

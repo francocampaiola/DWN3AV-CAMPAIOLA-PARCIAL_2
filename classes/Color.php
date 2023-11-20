@@ -9,16 +9,16 @@ class Color
     /**
      * Devuelve un array con los alias y IDS de todos los colores existentes en nuestro catalogo
      */
-    public function listar_colores_x_gorra(): array
+    public function get_colores_por_id_gorra($idGorra): array
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT DISTINCT
-                    colores.id,
-                    colores.nombre
-                    FROM colores
-                    JOIN gorras ON gorras.color_id = colores.id;";
+        $query = "SELECT colores.id, colores.nombre, colores.codigo_hexadecimal
+        FROM colores
+        LEFT JOIN colores_x_gorra ON colores_x_gorra.color_id = colores.id
+        WHERE colores_x_gorra.gorra_id = :idGorra;";
 
         $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->bindParam(':idGorra', $idGorra, PDO::PARAM_INT);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
         $PDOStatement->execute();
 
