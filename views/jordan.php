@@ -15,7 +15,7 @@ $gorra = $objGorra->catalogo_x_modelo($modelo);
             foreach ($gorra as $gorra) { ?>
                 <div class="col-12 col-md-3">
                     <div class="card gap-2 mb-2">
-                        <img src="img/<?= $gorra->getImagen() ?>" alt="Imagen de gorra <?= $gorra->getMarca() ?>, modelo <?= $gorra->getModelo() ?>">
+                        <img src="img/gorras/<?= $gorra->getImagen() ?>" alt="Imagen de gorra <?= $gorra->getMarca() ?>, modelo <?= $gorra->getModelo() ?>">
                         <div class="card-body">
                             <h2 class="card-title fs-5"><?= $gorra->getMarca() ?> <?= $gorra->getModelo() ?></h5>
                                 <p class="card-text mx-auto"><?= $gorra->precio_formateado() ?> USD</p>
