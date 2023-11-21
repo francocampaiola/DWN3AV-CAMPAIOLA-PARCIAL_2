@@ -89,7 +89,7 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                             if ($key == $seccion) {
                                 echo " active";
                             }
-                            echo " nav-link' href='index.php?sec=$key'>$value</a></li>";
+                            echo " nav-link text-left ms-2' href='index.php?sec=$key'>$value</a></li>";
                         }
                         echo "</ul>";
                     ?>
