@@ -1,9 +1,5 @@
 <?php
-require_once "../classes/Gorra.php";
-require_once "../classes/Marca.php";
-require_once "../classes/Color.php";
-require_once "../classes/Material.php";
-require_once "../classes/Conexion.php";
+require_once "../functions/autoload.php";
 
 $secciones_validas = [
     'dashboard' => [
@@ -59,7 +55,7 @@ if (!array_key_exists($seccion, $secciones_validas)) {
     <title>Tienda de Gorras | <?= $titulo ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="icon" type="image/x-icon" href="img/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.svg">
 </head>
 
 <body>
@@ -89,12 +85,16 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                         echo "</a>";
                         echo "<ul class='dropdown-menu aria-labelledby='navbarDropdown'>";
                         foreach ($secciones_navegables_dropdown as $key => $value) {
-                            echo "<li><a class='dropdown-item' href='index.php?sec=$key'>$value</a></li>";
+                            echo "<li><a class='";
+                            if ($key == $seccion) {
+                                echo " active";
+                            }
+                            echo " nav-link' href='index.php?sec=$key'>$value</a></li>";
                         }
                         echo "</ul>";
-                        ?>
+                    ?>
                     <?php
-                }
+                    }
                     ?>
                 </ul>
             </div>

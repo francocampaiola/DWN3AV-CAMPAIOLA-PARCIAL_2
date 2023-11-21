@@ -1,9 +1,5 @@
 <?php
-    require_once "classes/Gorra.php";
-    require_once "classes/Marca.php";
-    require_once "classes/Color.php";
-    require_once "classes/Material.php";
-    require_once "classes/Conexion.php";
+    require_once "functions/autoload.php";
 
     $secciones_validas = [
         'home' => [
