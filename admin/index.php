@@ -68,6 +68,7 @@ if (!array_key_exists($seccion, $secciones_validas)) {
             <a class="navbar-brand disabled">
                 <img src="../img/logo.svg" height="80" alt="Inicio">
             </a>
+            <span class="badge bg-warning text-dark">Admin</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
