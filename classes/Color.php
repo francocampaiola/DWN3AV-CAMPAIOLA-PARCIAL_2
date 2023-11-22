@@ -37,13 +37,20 @@ class Color
         $query = "SELECT * FROM colores WHERE id = ?";
 
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
-
         $PDOStatement->execute([$id]);
 
-        $result = $PDOStatement->fetch();
+        $colorData = $PDOStatement->fetch(PDO::FETCH_ASSOC);
 
-        return $result ?? null;
+        if (!$colorData) {
+            return null;
+        }
+
+        $color = new Color();
+        $color->id = $colorData['id'];
+        $color->nombre = $colorData['nombre'];
+        $color->codigo_hexadecimal = $colorData['codigo_hexadecimal'];
+
+        return $color;
     }
 
     /**
@@ -63,6 +70,37 @@ class Color
         return $lista;
     }
 
+    /**
+     * Inserta un nuevo color en la base de datos
+     * @param string $nombre El nombre del color
+     * @param string $codigo_hexadecimal El código hexadecimal del color
+     */
+    public function insert(
+        string $nombre,
+        string $codigo_hexadecimal
+    ) {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO colores (nombre, codigo_hexadecimal) VALUES (?, ?)";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([$nombre, $codigo_hexadecimal]);
+    }
+
+    /**
+     * Edita un color existente en la base de datos
+     * @param string $nombre El nombre del color
+     * @param string $codigo_hexadecimal El código hexadecimal del color
+     */
+    public function edit(
+        string $nombre,
+        string $codigo_hexadecimal
+    ) {
+        $conexion = (new Conexion())->getConexion();
+        $query = "UPDATE colores SET nombre = ?, codigo_hexadecimal = ? WHERE id = ?";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([$nombre, $codigo_hexadecimal, $this->id]);
+    }
 
     /**
      * Get the value of nombre

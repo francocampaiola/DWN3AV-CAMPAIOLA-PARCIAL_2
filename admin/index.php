@@ -34,6 +34,14 @@ $secciones_validas = [
         'titulo' => 'Eliminar gorra',
         'vista' => 'delete_gorra'
     ],
+    'add_color' => [
+        'titulo' => 'Añadir color',
+        'vista' => 'add_color'
+    ],
+    'edit_color' => [
+        'titulo' => 'Editar color',
+        'vista' => 'edit_color'
+    ],
 ];
 
 $secciones_navegables = [
