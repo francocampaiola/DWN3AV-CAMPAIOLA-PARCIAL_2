@@ -103,6 +103,18 @@ class Color
     }
 
     /**
+     * Elimina un color existente en la base de datos
+     */
+    public function delete()
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM colores WHERE id = :id";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([':id' => $this->id]);
+    }
+
+    /**
      * Get the value of nombre
      */
     public function getNombre()

@@ -208,12 +208,10 @@ class Gorra
     {
         $conexion = (new Conexion())->getConexion();
 
-        // Eliminar colores asociados a la gorra
         $queryEliminarColores = "DELETE FROM colores_x_gorra WHERE gorra_id = :gorraId";
         $PDOStatementEliminarColores = $conexion->prepare($queryEliminarColores);
         $PDOStatementEliminarColores->execute([':gorraId' => $this->id]);
 
-        // Ahora, eliminar la gorra
         $queryEliminarGorra = "DELETE FROM gorras WHERE id = :id";
         $PDOStatementEliminarGorra = $conexion->prepare($queryEliminarGorra);
         $PDOStatementEliminarGorra->execute([':id' => $this->id]);

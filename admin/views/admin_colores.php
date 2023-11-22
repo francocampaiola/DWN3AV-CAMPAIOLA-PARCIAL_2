@@ -28,7 +28,7 @@ $colores = $miObjetoColor->listar();
                                 </a>
                             </div>
                             <div class="col">
-                                <a class="mb-2 btn btn-danger btn-lg btn-block">
+                                <a href="index.php?sec=delete_color&id=<?= $color->getId() ?>" class="mb-2 btn btn-danger btn-lg btn-block">
                                     Borrar
                                 </a>
                             </div>

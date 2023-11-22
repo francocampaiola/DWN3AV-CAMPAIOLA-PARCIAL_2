@@ -42,6 +42,10 @@ $secciones_validas = [
         'titulo' => 'Editar color',
         'vista' => 'edit_color'
     ],
+    'delete_color' => [
+        'titulo' => 'Eliminar color',
+        'vista' => 'delete_color'
+    ]
 ];
 
 $secciones_navegables = [
