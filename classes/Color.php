@@ -46,6 +46,23 @@ class Color
         return $result ?? null;
     }
 
+    /**
+     * Devuelve un array con todos los colores existentes en nuestro catalogo
+     */
+    public function listar(): array
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "SELECT * FROM colores";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute();
+
+        $lista = $PDOStatement->fetchAll();
+
+        return $lista;
+    }
+
 
     /**
      * Get the value of nombre

@@ -21,7 +21,11 @@ $secciones_validas = [
     'admin_materiales' => [
         'titulo' => 'Administración de gorras | Materiales',
         'vista' => 'admin_materiales'
-    ]
+    ],
+    'add_gorra' => [
+        'titulo' => 'Añadir gorra',
+        'vista' => 'add_gorra'
+    ],
 ];
 
 $secciones_navegables = [
