@@ -23,7 +23,7 @@ $colores = $miObjetoColor->listar();
                         </div>
                         <div class="row mx-auto">
                             <div class="col">
-                                <a href="index.php?sec=edit_color" class="mb-2 btn btn-primary btn-lg btn-block">
+                                <a href="index.php?sec=edit_color&id=<?= $color->getId() ?>" class="mb-2 btn btn-primary btn-lg btn-block">
                                     Editar
                                 </a>
                             </div>

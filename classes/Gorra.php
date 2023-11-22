@@ -207,11 +207,18 @@ class Gorra
     public function delete()
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "DELETE FROM gorras WHERE id = :id"; // Modificar aquí
 
-        $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute([':id' => $this->id]); // Modificar aquí
+        // Eliminar colores asociados a la gorra
+        $queryEliminarColores = "DELETE FROM colores_x_gorra WHERE gorra_id = :gorraId";
+        $PDOStatementEliminarColores = $conexion->prepare($queryEliminarColores);
+        $PDOStatementEliminarColores->execute([':gorraId' => $this->id]);
+
+        // Ahora, eliminar la gorra
+        $queryEliminarGorra = "DELETE FROM gorras WHERE id = :id";
+        $PDOStatementEliminarGorra = $conexion->prepare($queryEliminarGorra);
+        $PDOStatementEliminarGorra->execute([':id' => $this->id]);
     }
+
 
     /** 
      * Devuelve el precio de una gorra formateado

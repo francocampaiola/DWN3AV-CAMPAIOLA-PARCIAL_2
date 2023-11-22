@@ -34,21 +34,13 @@ class Color
     public function get_x_id(int $id): ?Color
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM colores WHERE id = ?";
+        $query = "SELECT * FROM colores WHERE id = :id";
 
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute([$id]);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute([':id' => $id]);
 
-        $colorData = $PDOStatement->fetch(PDO::FETCH_ASSOC);
-
-        if (!$colorData) {
-            return null;
-        }
-
-        $color = new Color();
-        $color->id = $colorData['id'];
-        $color->nombre = $colorData['nombre'];
-        $color->codigo_hexadecimal = $colorData['codigo_hexadecimal'];
+        $color = $PDOStatement->fetch();
 
         return $color;
     }
@@ -93,13 +85,21 @@ class Color
      */
     public function edit(
         string $nombre,
-        string $codigo_hexadecimal
+        string $codigo_hexadecimal,
+        int $id
     ) {
         $conexion = (new Conexion())->getConexion();
-        $query = "UPDATE colores SET nombre = ?, codigo_hexadecimal = ? WHERE id = ?";
+
+        $query = "UPDATE colores SET nombre = :nombre, codigo_hexadecimal = :codigo_hexadecimal WHERE id = :id";
 
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute([$nombre, $codigo_hexadecimal, $this->id]);
+        $PDOStatement->execute(
+            [
+                ':nombre' => $nombre,
+                ':codigo_hexadecimal' => $codigo_hexadecimal,
+                ':id' => $id
+            ]
+        );
     }
 
     /**

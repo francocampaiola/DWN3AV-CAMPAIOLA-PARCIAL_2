@@ -12,7 +12,7 @@
                 </h1>
             </div>
         </div>
-        <form class="row g-3" action="actions/edit_color_acc.php" method="POST" enctype="multipart/form-data">
+        <form class="row g-3" action="actions/edit_color_acc.php?id=<?= $color->getId() ?>" method="POST" enctype="multipart/form-data">
             <div class="col-md-6 mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $color->getNombre() ?>" required>

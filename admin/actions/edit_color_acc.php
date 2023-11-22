@@ -9,7 +9,8 @@ try {
 
     $color->edit(
         $postData['nombre'],
-        $postData['codigo_hexadecimal']
+        $postData['codigo_hexadecimal'],
+        $idColor
     );
 
     header('Location: ../index.php?sec=dashboard');
