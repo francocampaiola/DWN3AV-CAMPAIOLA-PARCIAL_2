@@ -170,18 +170,21 @@ class Gorra
 
         // Actualizar información de la gorra
         $query = "UPDATE gorras SET marca_id = :marca_id, material_id = :material_id, modelo = :modelo, imagen = :imagen, fecha_lanzamiento = :fecha_lanzamiento, descripcion = :descripcion, stock = :stock, precio = :precio WHERE id = :id";
+
         $PDOStatement = $conexion->prepare($query);
-        $PDOStatement->execute([
-            ':marca_id' => $marca_id,
-            ':material_id' => $material_id,
-            ':modelo' => $modelo,
-            ':imagen' => $imagen,
-            ':fecha_lanzamiento' => $fecha_lanzamiento,
-            ':descripcion' => $descripcion,
-            ':stock' => $stock,
-            ':precio' => $precio,
-            ':id' => $this->$id
-        ]);
+        $PDOStatement->execute(
+            [
+                ':marca_id' => $marca_id,
+                ':material_id' => $material_id,
+                ':modelo' => $modelo,
+                ':imagen' => $imagen,
+                ':fecha_lanzamiento' => $fecha_lanzamiento,
+                ':descripcion' => $descripcion,
+                ':stock' => $stock,
+                ':precio' => $precio,
+                ':id' => $id
+            ]
+        );
 
         $queryDelete = "DELETE FROM colores_x_gorra WHERE gorra_id = :gorra_id";
         $PDOStatementDelete = $conexion->prepare($queryDelete);
@@ -198,6 +201,18 @@ class Gorra
         }
     }
 
+    /**
+     * Elimina una gorra de la base de datos
+     */
+    public function delete()
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM gorras WHERE id = :id"; // Modificar aquí
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([':id' => $this->id]); // Modificar aquí
+    }
+
     /** 
      * Devuelve el precio de una gorra formateado
      */
@@ -206,36 +221,9 @@ class Gorra
         return '$' . number_format($this->precio, 2, ',', '.');
     }
 
-    /** 
-     * Getters
+    /**
+     * Devuelve un array con los ids de los colores de una gorra
      */
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getMarca(): string
-    {
-        $marca = (new Marca())->get_x_id($this->marca_id);
-        $nombre = $marca->getNombre();
-        return $nombre;
-    }
-
-    public function getMaterial_id(): int
-    {
-        return $this->material_id;
-    }
-
-    public function getModelo(): string
-    {
-        return $this->modelo;
-    }
-
-    public function getColor_id(): ?int
-    {
-        return $this->color_id;
-    }
     public function getColores(): array
     {
         $conexion = (new Conexion())->getConexion();
@@ -259,32 +247,95 @@ class Gorra
         return $colores;
     }
 
+    /** 
+     * Getters
+     */
 
+    /**
+     * Devuelve el id de una gorra
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Devuelve el id de la marca de una gorra
+     */
+    public function getMarca(): string
+    {
+        $marca = (new Marca())->get_x_id($this->marca_id);
+        $nombre = $marca->getNombre();
+        return $nombre;
+    }
+
+    /**
+     * Devuelve el id del material de una gorra
+     */
+    public function getMaterial_id(): int
+    {
+        return $this->material_id;
+    }
+
+    /**
+     * Devuelve el nombre del modelo de una gorra
+     */
+    public function getModelo(): string
+    {
+        return $this->modelo;
+    }
+
+    /**
+     * Devuelve el id del color de una gorra
+     */
+    public function getColor_id(): ?int
+    {
+        return $this->color_id;
+    }
+
+    /**
+     * Devuelve el precio de una gorra
+     */
     public function getPrecio(): float
     {
         return $this->precio;
     }
 
+    /**
+     * Devuelve el stock de una gorra
+     */
     public function getStock(): int
     {
         return $this->stock;
     }
 
+    /**
+     * Devuelve el nombre de la imagen de una gorra
+     */
     public function getImagen(): string
     {
         return $this->imagen;
     }
 
+    /**
+     * Devuelve la fecha de lanzamiento de una gorra
+     */
     public function getFechaLanzamiento(): string
     {
         return $this->fecha_lanzamiento;
     }
 
+    /**
+     * Devuelve la descripción de una gorra
+     */
     public function getDescripcion(): string
     {
         return $this->descripcion;
     }
 
+    /**
+     * Devuelve el nombre del material de una gorra
+     */
     public function getMaterial(): string
     {
         $material = (new Material())->get_x_id($this->material_id);

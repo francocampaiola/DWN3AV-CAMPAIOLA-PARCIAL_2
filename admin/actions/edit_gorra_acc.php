@@ -2,17 +2,19 @@
 require_once '../../functions/autoload.php';
 
 $postData = $_POST;
-$filesData = $_FILES['imagen'];
-$idGorra = $_GET['id'] ?? FALSE;
+$filesData = $_FILES['imagen'] ?? null;
+$idGorra = $_GET['id'] ?? null;
 
 try {
     $gorra = (new Gorra())->gorra_x_id($idGorra);
 
-    if (!empty($fileData['tmp_name'])) {
+    if (!empty($filesData['tmp_name'])) {
         $imagen = (new Imagen())->subirImagen(__DIR__ . "../../img/gorras", $fileData);
     } else {
         $imagen = $gorra->getImagen();
     }
+
+    print_r($gorra);
 
     $gorra->edit(
         $postData['marca_id'],

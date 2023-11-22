@@ -29,7 +29,7 @@ $catalogo = $miObjetoGorra->catalogo_completo();
                                     </a>
                                 </div>
                                 <div class="col">
-                                    <a href="index.php?sec=eliminar_gorra&id=<?= $gorra->getId()?>" class="mb-2 btn btn-danger btn-lg btn-block">
+                                    <a href="index.php?sec=delete_gorra&id=<?= $gorra->getId() ?>" class="mb-2 btn btn-danger btn-lg btn-block">
                                         Borrar
                                     </a>
                                 </div>
