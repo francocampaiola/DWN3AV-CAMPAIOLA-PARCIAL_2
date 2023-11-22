@@ -24,7 +24,7 @@ $catalogo = $miObjetoGorra->catalogo_completo();
                             </div>
                             <div class="row mx-auto">
                                 <div class="col">
-                                    <a href="index.php?sec=editar_gorra&id=<?= $gorra->getId()?>" class="mb-2 btn btn-primary btn-lg btn-block">
+                                    <a href="index.php?sec=edit_gorra&id=<?= $gorra->getId()?>" class="mb-2 btn btn-primary btn-lg btn-block">
                                         Editar
                                     </a>
                                 </div>

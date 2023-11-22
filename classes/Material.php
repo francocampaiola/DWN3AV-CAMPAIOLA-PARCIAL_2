@@ -46,6 +46,14 @@ class Material {
     {
         return $this->nombre;
     }
+
+    /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
 
 ?>

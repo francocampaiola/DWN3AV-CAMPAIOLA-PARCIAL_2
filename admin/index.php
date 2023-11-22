@@ -26,6 +26,10 @@ $secciones_validas = [
         'titulo' => 'Añadir gorra',
         'vista' => 'add_gorra'
     ],
+    'edit_gorra' => [
+        'titulo' => 'Editar gorra',
+        'vista' => 'edit_gorra'
+    ],
 ];
 
 $secciones_navegables = [

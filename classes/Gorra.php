@@ -48,6 +48,25 @@ class Gorra
     }
 
     /** 
+     * Devuelve una gorra filtrada por id
+     * @param int $id Un int con el id a buscar
+     * @return Gorra Un objeto Gorra.
+     */
+    public function gorra_x_id(int $id): ?Gorra
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "SELECT * FROM gorras WHERE id = :id";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $PDOStatement->execute([':id' => $id]);
+
+        $gorra = $PDOStatement->fetch();
+
+        return $gorra;
+    }
+
+    /** 
      * Devuelve el catálogo de gorras filtrado por modelo
      * @param string $modelo Un string con el nombre del modelo a buscar
      * @return Gorra[] Un Array lleno de instancias de objeto Gorra.
@@ -64,6 +83,119 @@ class Gorra
         }
 
         return $resultado;
+    }
+
+    /**
+     * Inserta una gorra en la base de datos
+     * @param int $marca_id Un int con el id de la marca
+     * @param string $modelo Un string con el nombre del modelo
+     * @param string $fecha_lanzamiento Un string con la fecha de lanzamiento
+     * @param int $material_id Un int con el id del material
+     * @param array $color_id Un array con los ids de los colores
+     * @param int $stock Un int con el stock
+     * @param float $precio Un float con el precio
+     * @param string $descripcion Un string con la descripción
+     * @param string $imagen Un string con el nombre de la imagen
+     */
+    public function insert(
+        int $marca_id,
+        string $modelo,
+        string $fecha_lanzamiento,
+        int $material_id,
+        array $color_id,
+        int $stock,
+        float $precio,
+        string $descripcion,
+        string $imagen
+    ) {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO gorras (marca_id, material_id, color_id, modelo, imagen, fecha_lanzamiento, descripcion, stock, precio) VALUES (:marca_id, :material_id, :color_id, :modelo, :imagen, :fecha_lanzamiento, :descripcion, :stock, :precio)";
+
+        $color_id_str = implode(',', $color_id);
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute(
+            [
+                ':marca_id' => $marca_id,
+                ':material_id' => $material_id,
+                ':color_id' => $color_id_str,
+                ':modelo' => $modelo,
+                ':imagen' => $imagen,
+                ':fecha_lanzamiento' => $fecha_lanzamiento,
+                ':descripcion' => $descripcion,
+                ':stock' => $stock,
+                ':precio' => $precio
+            ]
+        );
+
+        $gorra_id = $conexion->lastInsertId();
+
+        $queryColores = "INSERT INTO colores_x_gorra (gorra_id, color_id) VALUES (:gorra_id, :color_id)";
+        $PDOStatementColores = $conexion->prepare($queryColores);
+
+        foreach ($color_id as $color) {
+            $PDOStatementColores->execute([
+                ':gorra_id' => $gorra_id,
+                ':color_id' => $color
+            ]);
+        }
+    }
+
+    /**
+     * Edita una gorra en la base de datos
+     * @param int $marca_id Un int con el id de la marca
+     * @param string $modelo Un string con el nombre del modelo
+     * @param string $fecha_lanzamiento Un string con la fecha de lanzamiento
+     * @param int $material_id Un int con el id del material
+     * @param array $color_id Un array con los ids de los colores
+     * @param int $stock Un int con el stock
+     * @param float $precio Un float con el precio
+     * @param string $descripcion Un string con la descripción
+     * @param string $imagen Un string con el nombre de la imagen
+     * @param int $id Un int con el id de la gorra
+     */
+    public function edit(
+        int $marca_id,
+        string $modelo,
+        string $fecha_lanzamiento,
+        int $material_id,
+        array $color_id,
+        int $stock,
+        float $precio,
+        string $descripcion,
+        string $imagen,
+        int $id
+    ) {
+        $conexion = (new Conexion())->getConexion();
+
+        // Actualizar información de la gorra
+        $query = "UPDATE gorras SET marca_id = :marca_id, material_id = :material_id, modelo = :modelo, imagen = :imagen, fecha_lanzamiento = :fecha_lanzamiento, descripcion = :descripcion, stock = :stock, precio = :precio WHERE id = :id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            ':marca_id' => $marca_id,
+            ':material_id' => $material_id,
+            ':modelo' => $modelo,
+            ':imagen' => $imagen,
+            ':fecha_lanzamiento' => $fecha_lanzamiento,
+            ':descripcion' => $descripcion,
+            ':stock' => $stock,
+            ':precio' => $precio,
+            ':id' => $this->$id
+        ]);
+
+        $queryDelete = "DELETE FROM colores_x_gorra WHERE gorra_id = :gorra_id";
+        $PDOStatementDelete = $conexion->prepare($queryDelete);
+        $PDOStatementDelete->execute([':gorra_id' => $id]);
+
+        $queryColores = "INSERT INTO colores_x_gorra (gorra_id, color_id) VALUES (:gorra_id, :color_id)";
+        $PDOStatementColores = $conexion->prepare($queryColores);
+
+        foreach ($color_id as $color) {
+            $PDOStatementColores->execute([
+                ':gorra_id' => $id,
+                ':color_id' => $color
+            ]);
+        }
     }
 
     /** 
@@ -90,6 +222,11 @@ class Gorra
         return $nombre;
     }
 
+    public function getMaterial_id(): int
+    {
+        return $this->material_id;
+    }
+
     public function getModelo(): string
     {
         return $this->modelo;
@@ -99,6 +236,29 @@ class Gorra
     {
         return $this->color_id;
     }
+    public function getColores(): array
+    {
+        $conexion = (new Conexion())->getConexion();
+        $colores = [];
+
+        // Obtener el color directamente de la tabla gorras
+        if ($this->color_id !== null) {
+            $colores[] = $this->color_id;
+        }
+
+        // Obtener colores adicionales de la tabla colores_x_gorra
+        $query = "SELECT color_id FROM colores_x_gorra WHERE gorra_id = :gorra_id";
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([':gorra_id' => $this->getId()]);
+
+        $coloresAdicionales = $PDOStatement->fetchAll(PDO::FETCH_COLUMN);
+
+        // Combinar los colores obtenidos de ambas fuentes
+        $colores = array_merge($colores, $coloresAdicionales);
+
+        return $colores;
+    }
+
 
     public function getPrecio(): float
     {

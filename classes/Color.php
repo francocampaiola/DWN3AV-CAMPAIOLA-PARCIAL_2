@@ -73,6 +73,14 @@ class Color
     }
 
     /**
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Get the value of codigo hexadecimal
      */
     public function getCodigoHexadecimal()
