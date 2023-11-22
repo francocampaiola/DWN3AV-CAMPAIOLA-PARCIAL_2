@@ -11,14 +11,59 @@ class Marca {
     public function get_x_id(int $id): ?Marca
     {
         $conexion = (new Conexion())->getConexion();
-        $query = "SELECT * FROM marcas WHERE id = $id";
+        $query = "SELECT * FROM marcas WHERE id = :id";
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->setFetchMode(PDO::FETCH_CLASS, self::class);
-        $PDOStatement->execute();
+        $PDOStatement->execute([':id' => $id]);
 
-        $result = $PDOStatement->fetch();
-        return $result ?? null;
+        $marca = $PDOStatement->fetch();
+
+        return $marca;
+    }
+
+    /**
+     * Inserta una nueva marca en la base de datos
+     */
+    public function insert(string $nombre)
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "INSERT INTO marcas (nombre) VALUES (:nombre)";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            ':nombre' => $nombre
+        ]);
+    }
+
+    /**
+     * Edita los datos de una marca en particular
+     */
+    public function edit(
+        string $nombre
+    ) {
+        $conexion = (new Conexion())->getConexion();
+        $query = "UPDATE marcas SET nombre = :nombre WHERE id = :id";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            ':nombre' => $nombre,
+            ':id' => $this->id
+        ]);
+    }
+
+    /**
+     * Elimina una marca en particular
+     */
+    public function delete()
+    {
+        $conexion = (new Conexion())->getConexion();
+        $query = "DELETE FROM marcas WHERE id = :id";
+
+        $PDOStatement = $conexion->prepare($query);
+        $PDOStatement->execute([
+            ':id' => $this->id
+        ]);
     }
 
     /**

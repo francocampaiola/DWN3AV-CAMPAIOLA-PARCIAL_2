@@ -45,7 +45,19 @@ $secciones_validas = [
     'delete_color' => [
         'titulo' => 'Eliminar color',
         'vista' => 'delete_color'
-    ]
+    ],
+    'add_marca' => [
+        'titulo' => 'Añadir marca',
+        'vista' => 'add_marca'
+    ],
+    'edit_marca' => [
+        'titulo' => 'Editar marca',
+        'vista' => 'edit_marca'
+    ],
+    'delete_marca' => [
+        'titulo' => 'Eliminar marca',
+        'vista' => 'delete_marca'
+    ],
 ];
 
 $secciones_navegables = [
