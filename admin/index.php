@@ -70,6 +70,10 @@ $secciones_validas = [
         'titulo' => 'Eliminar material',
         'vista' => 'delete_material'
     ],
+    'login' => [
+        'titulo' => 'Iniciar sesión',
+        'vista' => 'login'
+    ]
 ];
 
 $secciones_navegables = [
@@ -92,6 +96,9 @@ if (!array_key_exists($seccion, $secciones_validas)) {
     $vista = $seccion;
     $titulo = $secciones_validas[$seccion]['titulo'];
 }
+
+$userData = $_SESSION['loggedIn'] ?? FALSE;
+
 ?>
 
 <!DOCTYPE html>
