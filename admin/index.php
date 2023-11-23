@@ -58,6 +58,18 @@ $secciones_validas = [
         'titulo' => 'Eliminar marca',
         'vista' => 'delete_marca'
     ],
+    'add_material' => [
+        'titulo' => 'Añadir material',
+        'vista' => 'add_material'
+    ],
+    'edit_material' => [
+        'titulo' => 'Editar material',
+        'vista' => 'edit_material'
+    ],
+    'delete_material' => [
+        'titulo' => 'Eliminar material',
+        'vista' => 'delete_material'
+    ],
 ];
 
 $secciones_navegables = [
