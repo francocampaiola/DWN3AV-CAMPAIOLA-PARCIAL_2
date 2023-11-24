@@ -8,6 +8,9 @@
                         <?PHP
                         echo "<pre>";
                         print_r($_SESSION['loggedIn']);
+                        echo "<pre>";
+                        print_r($password);
+                        echo "</pre>";
                         echo "</pre>";
                         ?>
                     </div>

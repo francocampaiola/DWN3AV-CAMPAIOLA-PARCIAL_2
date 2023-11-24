@@ -12,5 +12,5 @@ if ($login) {
         header('location: ../index.php?sec=dashboard');
     }
 } else {
-    header('location: ../index.php?sec=login');
+    header('location: ../../index.php?sec=login');
 }
