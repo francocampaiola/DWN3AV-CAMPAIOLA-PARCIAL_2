@@ -67,7 +67,6 @@ if (count($colores) < 2) {
                         <div class="text-danger fs-6">USD</div>
                     </div>
                     <a href="index.php?sec=success" class="btn btn-danger w-100 fw-bold">COMPRAR</a>
-
                 </div>
             </div>
 

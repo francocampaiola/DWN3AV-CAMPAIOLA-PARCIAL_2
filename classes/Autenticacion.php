@@ -7,7 +7,7 @@ class Autenticacion
         $usuario = (new Usuario())->usuario_x_username($username);
 
         if ($usuario) {
-            if (!(password_verify($password, $usuario->getPassword()))) {
+            if ((password_verify($password, $usuario->getPassword()))) {
 
                 $datosLogin['username'] = $usuario->getNombre_usuario();
                 $datosLogin['nombre_completo'] = $usuario->getNombre_completo();
@@ -43,7 +43,7 @@ class Autenticacion
                 if ($_SESSION['loggedIn']['rol'] == "admin" OR $_SESSION['loggedIn']['rol'] == "superadmin") {
                     return TRUE;
                 } else {
-                    header('location: index.php?sec=login');
+                    header('location: index.php?sec=home');
                 }
             } else {
                 return TRUE;

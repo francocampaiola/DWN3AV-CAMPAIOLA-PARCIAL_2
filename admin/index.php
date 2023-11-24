@@ -91,7 +91,12 @@ $secciones_validas = [
         'titulo' => 'Iniciar sesión',
         'vista' => 'login',
         'restringido' => false
-    ]
+    ],
+    'logout' => [
+        'titulo' => 'Cerrar sesión',
+        'vista' => 'logout',
+        'restringido' => true
+    ],
 ];
 
 $secciones_navegables = [
@@ -112,9 +117,9 @@ if (!array_key_exists($seccion, $secciones_validas)) {
     $titulo = "404: Página no encontrada";
 } else {
     $vista = $seccion;
-    
-    if($secciones_validas[$seccion]['restringido']){
-        (new Autenticacion())->verify();    
+
+    if ($secciones_validas[$seccion]['restringido']) {
+        (new Autenticacion())->verify();
     }
 
     $titulo = $secciones_validas[$seccion]['titulo'];
@@ -170,6 +175,9 @@ $userData = $_SESSION['loggedIn'] ?? FALSE;
                             echo " nav-link text-left ms-2' href='index.php?sec=$key'>$value</a></li>";
                         }
                         echo "</ul>";
+                        echo "<li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='actions/auth_logout.php'>Cerrar sesión</a></li>";
+                        echo "</li>";
                     ?>
                     <?php
                     }

@@ -1,0 +1,3 @@
+User franco.campaiola, superadmin, pass 1234
+User fcampaiola, admin, pass 1234
+User francocampaiola, usuario, pass 1234

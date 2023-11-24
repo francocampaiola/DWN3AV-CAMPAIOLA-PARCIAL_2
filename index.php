@@ -47,6 +47,11 @@ $secciones_validas = [
         'vista' => 'panel_usuario',
         'restringido' => true
     ],
+    'carrito' => [
+        'titulo' => 'Carrito',
+        'vista' => 'carrito',
+        'restringido' => true
+    ],
 ];
 
 $secciones_navegables = [
@@ -55,7 +60,12 @@ $secciones_navegables = [
     'productos' => 'Productos',
     'jordan' => 'Jordan',
     'envios' => 'Envíos & Pickup',
-    'login' => 'Iniciar sesión'
+];
+
+$secciones_login = [
+    'login' => 'Iniciar sesión',
+    'logout' => 'Cerrar sesión',
+    'panel_usuario' => 'Panel de usuario'
 ];
 
 $seccion = $_GET['sec'] ?? 'home';
@@ -107,6 +117,31 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                         echo "' href='index.php?sec=$key'>$value</a>";
                         echo "</li>";
                     }
+                    if (isset($_SESSION['loggedIn'])) {
+                        if (isset($_SESSION['loggedIn'])) {
+                            if ($_SESSION['loggedIn']['rol'] == 'superadmin') {
+                                echo "<li class='nav-item'>";
+                                echo "<a class='nav-link";
+                                if ($seccion == 'panel_usuario') {
+                                    echo " active";
+                                }
+                                echo "' href='admin/index.php?sec=dashboard'>Panel de Administrador</a>";
+                                echo "</li>";
+                            }
+                            echo "<li class='nav-item'><a class='nav-link' href='index.php?sec=carrito'>Carrito</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='admin/actions/auth_logout.php'>Cerrar sesión</a></li>";
+                        }
+                        echo "</li>";
+                    } else {
+                        echo "<li class='nav-item'>";
+                        echo "<a class='nav-link";
+                        if ($seccion == 'login') {
+                            echo " active";
+                        }
+                        echo "' href='index.php?sec=login'>Iniciar sesión</a>";
+                        echo "</li>";
+                    }
+
                     ?>
                 </ul>
             </div>

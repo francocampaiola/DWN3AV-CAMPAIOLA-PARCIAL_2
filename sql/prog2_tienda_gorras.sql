@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2023 a las 02:24:13
+-- Tiempo de generación: 24-11-2023 a las 23:31:07
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -163,6 +163,15 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `email`, `nombre_usuario`, `nombre_completo`, `password`, `rol`) VALUES
+(1, 'franco.campaiola@davinci.edu.ar', 'franco.campaiola', 'Franco Campaiola', '$2y$10$V.UkUyxMIRCZOynuKo1c8.u.BpOFXfEYNg1XpiS8q4G/1nRGbqFOS', 'superadmin'),
+(2, 'franco.campaiola@davinci.edu.ar', 'francocampaiola', 'Franco Campaiola', '$2y$10$V.UkUyxMIRCZOynuKo1c8.u.BpOFXfEYNg1XpiS8q4G/1nRGbqFOS', 'usuario'),
+(3, 'franco.campaiola@davinci.edu.ar', 'fcampaiola', 'Franco Campaiola', '$2y$10$V.UkUyxMIRCZOynuKo1c8.u.BpOFXfEYNg1XpiS8q4G/1nRGbqFOS', 'admin');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -245,7 +254,7 @@ ALTER TABLE `materiales`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
