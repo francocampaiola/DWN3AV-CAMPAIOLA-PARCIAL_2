@@ -4,75 +4,93 @@ require_once "../functions/autoload.php";
 $secciones_validas = [
     'dashboard' => [
         'titulo' => 'Panel de Administración',
-        'vista' => 'dashboard'
+        'vista' => 'dashboard',
+        'restringido' => true
     ],
     'admin_gorras' => [
         'titulo' => 'Administración de gorras | General',
-        'vista' => 'admin_gorras'
+        'vista' => 'admin_gorras',
+        'restringido' => true
     ],
     'admin_colores' => [
         'titulo' => 'Administración de gorras | Colores',
-        'vista' => 'admin_gorras'
+        'vista' => 'admin_gorras',
+        'restringido' => true
     ],
     'admin_marcas' => [
         'titulo' => 'Administración de gorras | Marcas',
-        'vista' => 'admin_marcas'
+        'vista' => 'admin_marcas',
+        'restringido' => true
     ],
     'admin_materiales' => [
         'titulo' => 'Administración de gorras | Materiales',
-        'vista' => 'admin_materiales'
+        'vista' => 'admin_materiales',
+        'restringido' => true
     ],
     'add_gorra' => [
         'titulo' => 'Añadir gorra',
-        'vista' => 'add_gorra'
+        'vista' => 'add_gorra',
+        'restringido' => true
     ],
     'edit_gorra' => [
         'titulo' => 'Editar gorra',
-        'vista' => 'edit_gorra'
+        'vista' => 'edit_gorra',
+        'restringido' => true
     ],
     'delete_gorra' => [
         'titulo' => 'Eliminar gorra',
-        'vista' => 'delete_gorra'
+        'vista' => 'delete_gorra',
+        'restringido' => true
     ],
     'add_color' => [
         'titulo' => 'Añadir color',
-        'vista' => 'add_color'
+        'vista' => 'add_color',
+        'restringido' => true
     ],
     'edit_color' => [
         'titulo' => 'Editar color',
-        'vista' => 'edit_color'
+        'vista' => 'edit_color',
+        'restringido' => true
     ],
     'delete_color' => [
         'titulo' => 'Eliminar color',
-        'vista' => 'delete_color'
+        'vista' => 'delete_color',
+        'restringido' => true
     ],
     'add_marca' => [
         'titulo' => 'Añadir marca',
-        'vista' => 'add_marca'
+        'vista' => 'add_marca',
+        'restringido' => true
     ],
     'edit_marca' => [
         'titulo' => 'Editar marca',
-        'vista' => 'edit_marca'
+        'vista' => 'edit_marca',
+        'restringido' => true
     ],
     'delete_marca' => [
         'titulo' => 'Eliminar marca',
-        'vista' => 'delete_marca'
+        'vista' => 'delete_marca',
+        'restringido' => true
     ],
     'add_material' => [
         'titulo' => 'Añadir material',
-        'vista' => 'add_material'
+        'vista' => 'add_material',
+        'restringido' => true
     ],
     'edit_material' => [
         'titulo' => 'Editar material',
-        'vista' => 'edit_material'
+        'vista' => 'edit_material',
+        'restringido' => true
     ],
     'delete_material' => [
         'titulo' => 'Eliminar material',
-        'vista' => 'delete_material'
+        'vista' => 'delete_material',
+        'restringido' => true
     ],
     'login' => [
         'titulo' => 'Iniciar sesión',
-        'vista' => 'login'
+        'vista' => 'login',
+        'restringido' => false
     ]
 ];
 
@@ -94,6 +112,11 @@ if (!array_key_exists($seccion, $secciones_validas)) {
     $titulo = "404: Página no encontrada";
 } else {
     $vista = $seccion;
+    
+    if($secciones_validas[$seccion]['restringido']){
+        (new Autenticacion())->verify();    
+    }
+
     $titulo = $secciones_validas[$seccion]['titulo'];
 }
 
