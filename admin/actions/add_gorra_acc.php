@@ -33,7 +33,7 @@ try {
         $imagen,
     );
 
-    header('Location: ../../admin/gorras.php');
+    header('Location: ../../admin/index.php?sec=dashboard');
 } catch (Exception $e) {
     die("No se pudo agregar la gorra, $e");
 }

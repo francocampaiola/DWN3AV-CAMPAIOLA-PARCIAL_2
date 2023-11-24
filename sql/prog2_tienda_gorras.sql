@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2023 a las 23:31:07
+-- Tiempo de generación: 24-11-2023 a las 23:45:16
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -65,7 +65,19 @@ CREATE TABLE `colores_x_gorra` (
 
 INSERT INTO `colores_x_gorra` (`id`, `gorra_id`, `color_id`) VALUES
 (1, 1, 1),
-(2, 1, 3);
+(2, 1, 3),
+(4, 9, 1),
+(5, 10, 1),
+(6, 10, 4),
+(7, 11, 4),
+(8, 12, 1),
+(9, 12, 3),
+(10, 13, 6),
+(11, 14, 2),
+(12, 15, 7),
+(13, 16, 1),
+(14, 17, 5),
+(15, 18, 2);
 
 -- --------------------------------------------------------
 
@@ -95,7 +107,17 @@ INSERT INTO `gorras` (`id`, `marca_id`, `material_id`, `color_id`, `modelo`, `im
 (2, 2, 2, 1, 'Air Jordan', 'nike_jordan.webp', '2023-09-15', 'Gorra Nike Air Jordan con estilo', 75, 39.99),
 (5, 3, 1, 3, 'Essentials', 'puma_essentials.webp', '2023-09-20', 'Una gorra cómoda y elegante de Puma', 50, 24.99),
 (6, 4, 2, 8, '9FORTY', 'newera_9forti.webp', '2023-09-25', 'Gorra New Era 9FORTY para los fanáticos de los deportes.', 60, 34.00),
-(8, 5, 1, 6, 'Classic', 'reebok_classic.webp', '2023-10-05', 'Gorra Reebok clásica.', 80, 27.00);
+(8, 5, 1, 6, 'Classic', 'reebok_classic.webp', '2023-10-05', 'Gorra Reebok clásica.', 80, 27.00),
+(9, 6, 2, 1, 'Chuck Taylor', '1700865517.webp', '2023-12-09', 'Gorra Converse Chuck Taylor', 55, 32.99),
+(10, 7, 1, 1, 'Classic Checkerboard', '1700865627.webp', '2023-09-22', 'Gorra Vans con diseño clásico', 70, 29.99),
+(11, 8, 2, 4, 'Heritage', '1700865663.webp', '2023-10-10', 'Gorra Fila Heritage en marrón', 45, 26.99),
+(12, 9, 1, 1, 'Blitzing', '1700865695.webp', '2023-02-15', 'Gorra Under Armour para los amantes del deporte', 50, 29.99),
+(13, 10, 1, 6, 'Ellis', '1700865726.webp', '2023-02-05', 'Gorra DC para los amantes del estilo', 41, 19.99),
+(14, 11, 1, 2, 'One And Only', '1700865770.jpg', '2023-05-15', '', 500, 19.99),
+(15, 12, 1, 7, 'All day', '1700865800.webp', '2021-02-15', '', 45, 19.99),
+(16, 2, 1, 1, 'Air Jordan', '1700865830.webp', '2009-04-02', '', 140, 29.99),
+(17, 2, 1, 5, 'Air Jordan', '1700865854.webp', '1999-12-05', '', 400, 19.99),
+(18, 13, 1, 2, 'Spirit white', '1700865885.webp', '2023-11-24', '', 500, 19.99);
 
 -- --------------------------------------------------------
 
@@ -230,13 +252,13 @@ ALTER TABLE `colores`
 -- AUTO_INCREMENT de la tabla `colores_x_gorra`
 --
 ALTER TABLE `colores_x_gorra`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `gorras`
 --
 ALTER TABLE `gorras`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `marcas`
