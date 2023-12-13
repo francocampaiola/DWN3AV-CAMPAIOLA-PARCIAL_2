@@ -11,9 +11,13 @@ $colores = $miObjetoColor->listar();
                     Administración de gorras | Colores
                 </h1>
             </div>
+            <div class="col-12 mt-3">
+                <?= (new Alerta())->mostrar_alertas() ?>
+            </div>
             <?php foreach ($colores as $color) {
             ?>
                 <div class="col-12 col-md-3">
+
                     <div class="card gap-2 mb-2">
                         <div class="p-3" style="background-color: <?= $color->getCodigoHexadecimal() ?>"></div>
                         <div class="card-body">
@@ -22,12 +26,12 @@ $colores = $miObjetoColor->listar();
                             </h2>
                         </div>
                         <div class="row mx-auto">
-                            <div class="col">
+                            <div class="col-6">
                                 <a href="index.php?sec=edit_color&id=<?= $color->getId() ?>" class="mb-2 btn btn-primary btn-lg btn-block">
                                     Editar
                                 </a>
                             </div>
-                            <div class="col">
+                            <div class="col-6">
                                 <a href="index.php?sec=delete_color&id=<?= $color->getId() ?>" class="mb-2 btn btn-danger btn-lg btn-block">
                                     Borrar
                                 </a>

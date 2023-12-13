@@ -11,6 +11,9 @@ $materiales = $miObjetoMaterial->listar();
                     Administración de gorras | Materiales
                 </h1>
             </div>
+            <div class="col-12 mt-3">
+                <?= (new Alerta())->mostrar_alertas() ?>
+            </div>
             <?php foreach ($materiales as $material) {
             ?>
                 <div class="col col-md-3">
@@ -21,12 +24,12 @@ $materiales = $miObjetoMaterial->listar();
                             </h2>
                         </div>
                         <div class="row mx-auto">
-                            <div class="col">
+                            <div class="col-6">
                                 <a href="index.php?sec=edit_material&id=<?= $material->getId() ?>" class="mb-2 btn btn-primary btn-lg btn-block">
                                     Editar
                                 </a>
                             </div>
-                            <div class="col">
+                            <div class="col-6">
                                 <a href="index.php?sec=delete_material&id=<?= $material->getId() ?>" class="mb-2 btn btn-danger btn-lg btn-block">
                                     Borrar
                                 </a>

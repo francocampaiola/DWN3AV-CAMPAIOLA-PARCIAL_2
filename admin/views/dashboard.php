@@ -12,6 +12,9 @@
             <p class="text-center">
                 Navega por las diferentes secciones para administrar los productos de la tienda.
             </p>
+            <div class="col-12 mt-3">
+                <?= (new Alerta())->mostrar_alertas() ?>
+            </div>
         </div>
     </div>
 </section>

@@ -14,6 +14,9 @@ $catalogo = $miObjetoGorra->catalogo_completo();
                     Administración general | Gorras
                 </h1>
             </div>
+            <div class="col-12 mt-3">
+                <?= (new Alerta())->mostrar_alertas() ?>
+            </div>
             <?php foreach ($catalogo as $gorra) {
             ?>
                 <div class="col-12 col-md-3">
@@ -23,12 +26,12 @@ $catalogo = $miObjetoGorra->catalogo_completo();
                             <h2 class="card-title fs-5 text-center"><?= $gorra->getMarca() ?> <?= $gorra->getModelo() ?></h5>
                         </div>
                         <div class="row mx-auto">
-                            <div class="col">
+                            <div class="col-6">
                                 <a href="index.php?sec=edit_gorra&id=<?= $gorra->getId() ?>" class="mb-2 btn btn-primary btn-lg btn-block">
                                     Editar
                                 </a>
                             </div>
-                            <div class="col">
+                            <div class="col-6">
                                 <a href="index.php?sec=delete_gorra&id=<?= $gorra->getId() ?>" class="mb-2 btn btn-danger btn-lg btn-block">
                                     Borrar
                                 </a>

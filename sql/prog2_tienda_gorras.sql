@@ -38,14 +38,14 @@ CREATE TABLE `colores` (
 --
 
 INSERT INTO `colores` (`id`, `nombre`, `codigo_hexadecimal`) VALUES
-(1, 'Negro', '000000'),
-(2, 'Blanco', 'FFFFFF'),
-(3, 'Gris', '808080'),
-(4, 'Marrón', '804000'),
-(5, 'Rojo', 'FF0000'),
-(6, 'Azul', '0000FF'),
-(7, 'Verde', '008F39'),
-(8, 'Rosa', 'FFC0CB');
+(1, 'Negro', '#000000'),
+(2, 'Blanco', '#FFFFFF'),
+(3, 'Gris', '#808080'),
+(4, 'Marrón', '#804000'),
+(5, 'Rojo', '#FF0000'),
+(6, 'Azul', '#0000FF'),
+(7, 'Verde', '#008F39'),
+(8, 'Rosa', '#FFC0CB');
 
 -- --------------------------------------------------------
 

@@ -33,7 +33,9 @@ try {
         $imagen,
     );
 
+    (new Alerta())->registrar_alerta("success", "La gorra se agregó correctamente");
     header('Location: ../../admin/index.php?sec=dashboard');
 } catch (Exception $e) {
+    (new Alerta())->registrar_alerta("error", "No se pudo agregar la gorra.");
     die("No se pudo agregar la gorra, $e");
 }

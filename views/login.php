@@ -15,6 +15,9 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="**************">
                 </div>
+                <div>
+                    <?= (new Alerta())->mostrar_alertas() ?>
+                </div>
                 <button type="submit" class="d-flex mx-auto btn btn-primary">Iniciar sesión</button>
             </form>
         </div>
