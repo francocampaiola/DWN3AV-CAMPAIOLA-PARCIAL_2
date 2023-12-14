@@ -1,8 +1,7 @@
 <?php
 
-$miObjetoGorra = new Gorra();
-
-$catalogo = $miObjetoGorra->catalogo_completo();
+$carrito = new Carrito();
+$productosCarrito = $carrito->listar_gorras();
 
 ?>
 

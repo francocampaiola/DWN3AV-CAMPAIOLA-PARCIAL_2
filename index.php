@@ -1,6 +1,9 @@
 <?php
 require_once "functions/autoload.php";
 
+$carrito = new Carrito();
+$totalGorras = $carrito->cantidad_total_gorras();
+
 $secciones_validas = [
     'home' => [
         'titulo' => 'Inicio',
