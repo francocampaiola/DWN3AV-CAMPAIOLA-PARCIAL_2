@@ -6,8 +6,23 @@ $objGorra = new Gorra();
 $gorra = $objGorra->catalogo_x_id($id);
 $colores = (new Color())->get_colores_por_id_gorra($id);
 
+$carrito = new Carrito();
+$productosCarrito = $carrito->listar_gorras();
+
 if (count($colores) < 2) {
     $colores[] = (new Color())->get_x_id($gorra->getColor_id());
+}
+
+if (empty($productosCarrito)) {
+    $cantidad = 0;
+} else {
+    foreach ($productosCarrito as $key => $value) {
+        if ($id == $value['id']) {
+            $cantidad = $value['cantidad'];
+        } else {
+            $cantidad = 0;
+        }
+    }
 }
 
 ?>
@@ -66,7 +81,22 @@ if (count($colores) < 2) {
                         <span class="pe-2"></span>
                         <div class="text-danger fs-6">USD</div>
                     </div>
-                    <a href="index.php?sec=success" class="btn btn-danger w-100 fw-bold">COMPRAR</a>
+                    <div>
+                        <form action="actions/add_gorra_carrito_acc.php" method="GET" class="row">
+                            <div class="col-6">
+                                <label for="cantidad" class="form-label">Cantidad:</label>
+                                <input type="number" name="cantidad" id="cantidad" class="form-control" value="1">
+                                <input type="hidden" name="id" id="id" value="<?= $gorra->getId() ?>">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <input type="submit" class="btn btn-danger w-100 fw-bold" value="Agregar al carrito"></input>
+                                <input type="hidden" value="<?= $gorra->getId() ?>" name="id" id="id">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <p>Ya agregaste <? $cantidad ?> unidades de esta gorra.</p>
+                    </div>
                 </div>
             </div>
 
