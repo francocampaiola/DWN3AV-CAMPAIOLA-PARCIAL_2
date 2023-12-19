@@ -105,19 +105,19 @@ class Carrito
     public function insertar_compra_database(array $datosCompra, array $productosComprados)
     {
         $conexion = (new Conexion())->getConexion();
-        $query = 'INSERT INTO compras VALUES (NULL, :id_usuario, :fecha, :total)';
+        $query = 'INSERT INTO compras VALUES (NULL, :fecha, :id_usuario, :importe)';
 
         $PDOStatement = $conexion->prepare($query);
         $PDOStatement->execute([
-            'id_usuario' => $datosCompra['id_usuario'],
             'fecha' => $datosCompra['fecha'],
-            'total' => $datosCompra['total']
+            'id_usuario' => $datosCompra['id_usuario'],
+            'importe' => $datosCompra['importe']
         ]);
 
         $idCompra = $conexion->lastInsertId();
 
         foreach ($productosComprados as $key => $value) {
-            $query = "INSERT INTO productos_x_compra VALUES (NULL, :id_compra, :id_producto, :cantidad)";
+            $query = "INSERT INTO gorras_x_compra VALUES (NULL, :id_compra, :id_producto, :cantidad)";
 
             $PDOStatement = $conexion->prepare($query);
             $PDOStatement->execute([

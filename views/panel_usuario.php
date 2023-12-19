@@ -13,6 +13,9 @@ $datosUsuario = $_SESSION['loggedIn'];
                         <p class="text-center ">¡Bienvenid@ <?= $datosUsuario['username'] ?> a tu Panel de Usuario!</p>
                     </div>
                 </div>
+                <div class="row">
+                    <?= (new Alerta())->mostrar_alertas() ?>
+                </div>
             </div>
             <?php
             if ($datosUsuario['rol'] == 'superadmin' || $datosUsuario['rol'] == 'admin') {

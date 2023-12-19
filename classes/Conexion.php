@@ -3,8 +3,8 @@
 class Conexion
 {
     private const DB_SERVER = 'localhost';
-    private const DB_USER = 'root';
-    private const DB_PASS = '';
+    private const DB_USER = 'gorra';
+    private const DB_PASS = 'gorra';
     private const DB_NAME = 'prog2_tienda_gorras';
 
     private const DB_DSN = 'mysql:host=' . self::DB_SERVER . ';dbname=' . self::DB_NAME . ';charset=utf8mb4';

@@ -53,7 +53,7 @@ $secciones_validas = [
     'carrito' => [
         'titulo' => 'Carrito',
         'vista' => 'carrito',
-        'restringido' => true
+        'restringido' => false
     ],
 ];
 
@@ -63,6 +63,7 @@ $secciones_navegables = [
     'productos' => 'Productos',
     'jordan' => 'Jordan',
     'envios' => 'Envíos & Pickup',
+    'carrito' => 'Carrito'
 ];
 
 $secciones_login = [
@@ -131,7 +132,6 @@ if (!array_key_exists($seccion, $secciones_validas)) {
                                 echo "' href='admin/index.php?sec=dashboard'>Panel de Administrador</a>";
                                 echo "</li>";
                             }
-                            echo "<li class='nav-item'><a class='nav-link' href='index.php?sec=carrito'>Carrito</a></li>";
                             echo "<li class='nav-item'><a class='nav-link' href='admin/actions/auth_logout.php'>Cerrar sesión</a></li>";
                         }
                         echo "</li>";

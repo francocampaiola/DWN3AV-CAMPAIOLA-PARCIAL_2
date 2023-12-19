@@ -11,7 +11,7 @@
                 <p class="fs-5">
                     ¡Esperamos que disfrutes tu nueva gorra!
                 </p>
-                <a href="index.php?sec=productos" class="btn btn-primary btn-sm btn-block">
+                <a href="index.php?sec=productos" class="btn btn-secondary btn-xl btn-block">
                     Volver al catálogo
                 </a>
             </div>
